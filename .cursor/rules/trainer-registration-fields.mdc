@@ -1,0 +1,10 @@
+---
+description: Do not add qualification, expertise, or reason to registration
+alwaysApply: true
+---
+
+# Slim registration (shared with Attendance and Mock Evaluation)
+
+Do not add **qualification**, **expertise**, or **reason** to staff/trainer registration forms or APIs.
+
+Those fields are unused across FirstBit apps. Keep registration to identity fields only (Student Management already uses name, email, designation, employee ID, and requested role — do not add the unused trainer fields).
