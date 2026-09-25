@@ -475,28 +475,28 @@ export default function AdmissionFormPage() {
 
   return (
     <div
-      className="min-h-screen bg-fbs-dark"
+      className="min-h-screen bg-fbs-dark overflow-x-hidden"
       style={{
         backgroundImage:
           "radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)",
         backgroundSize: "22px 22px",
       }}>
       {/* Top bar */}
-      <div className="bg-fbs-darker border-b border-fbs-border px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+      <div className="bg-fbs-darker border-b border-fbs-border px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3 min-w-0">
           <div className="w-8 h-8 bg-fbs-card rounded-lg flex items-center justify-center border border-fbs-border">
             <span className="text-fbs-green font-bold text-xs">FB</span>
           </div>
-          <div>
+          <div className="min-w-0">
             <p className="text-white text-sm font-semibold">
               FirstBit Solutions
             </p>
-            <p className="text-fbs-green text-xs">
+            <p className="text-fbs-green text-xs break-words">
               {batchInfo?.batchName} — Admission Form
             </p>
           </div>
         </div>
-        <p className="text-gray-500 text-xs">
+        <p className="text-gray-500 text-xs flex-shrink-0">
           Step {step} of {STEPS.length}
         </p>
       </div>
@@ -509,7 +509,7 @@ export default function AdmissionFormPage() {
               <div key={s.number} className="flex items-center flex-1">
                 <div className="flex flex-col items-center">
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border-2 transition-all ${
+                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-bold border-2 transition-all ${
                       step > s.number
                         ? "bg-fbs-green border-fbs-green text-black"
                         : step === s.number
@@ -529,7 +529,7 @@ export default function AdmissionFormPage() {
                 </div>
                 {i < STEPS.length - 1 && (
                   <div
-                    className={`flex-1 h-0.5 mx-2 mt-[-16px] transition-all ${step > s.number ? "bg-fbs-green" : "bg-fbs-border"}`}
+                    className={`flex-1 h-0.5 mx-1 sm:mx-2 mt-[-16px] transition-all ${step > s.number ? "bg-fbs-green" : "bg-fbs-border"}`}
                   />
                 )}
               </div>
@@ -537,7 +537,7 @@ export default function AdmissionFormPage() {
           </div>
         </div>
 
-        <div className="bg-fbs-darker border border-fbs-border rounded-2xl px-8 py-8 max-h-[75vh] overflow-y-auto">
+        <div className="bg-fbs-darker border border-fbs-border rounded-2xl px-4 py-6 sm:px-8 sm:py-8 max-h-[75vh] overflow-y-auto">
           {/* ── Step 1 — Identity ── */}
           {step === 1 && (
             <div>
@@ -584,7 +584,7 @@ export default function AdmissionFormPage() {
                   <label className="block text-fbs-green text-xs font-semibold uppercase tracking-widest mb-2">
                     Email Address *
                   </label>
-                  <div className="flex gap-2">
+                  <div className="flex flex-col sm:flex-row gap-2">
                     <input
                       type="email"
                       value={form.email}
@@ -603,7 +603,7 @@ export default function AdmissionFormPage() {
                         type="button"
                         onClick={sendOtp}
                         disabled={otpLoading}
-                        className="px-4 py-2.5 bg-fbs-green hover:bg-fbs-yellow text-black text-xs font-semibold rounded-lg transition disabled:opacity-50 whitespace-nowrap">
+                        className="w-full sm:w-auto px-4 py-2.5 bg-fbs-green hover:bg-fbs-yellow text-black text-xs font-semibold rounded-lg transition disabled:opacity-50 whitespace-nowrap">
                         {otpLoading
                           ? "Sending..."
                           : otpSent
@@ -632,7 +632,7 @@ export default function AdmissionFormPage() {
                     <label className="block text-fbs-green text-xs font-semibold uppercase tracking-widest mb-2">
                       Enter OTP *
                     </label>
-                    <div className="flex gap-2">
+                    <div className="flex flex-col sm:flex-row gap-2">
                       <input
                         type="text"
                         value={otpValue}
@@ -645,7 +645,7 @@ export default function AdmissionFormPage() {
                         type="button"
                         onClick={verifyOtp}
                         disabled={otpLoading}
-                        className="px-4 py-2.5 bg-fbs-green hover:bg-fbs-yellow text-black text-xs font-semibold rounded-lg transition disabled:opacity-50">
+                        className="w-full sm:w-auto px-4 py-2.5 bg-fbs-green hover:bg-fbs-yellow text-black text-xs font-semibold rounded-lg transition disabled:opacity-50">
                         {otpLoading ? "Verifying..." : "Verify"}
                       </button>
                     </div>
@@ -683,7 +683,7 @@ export default function AdmissionFormPage() {
                     setForm((f) => ({ ...f, fullName: e.target.value }))
                   }
                 />
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Input
                     label="Mobile Number"
                     name="mobile"
@@ -1297,7 +1297,7 @@ export default function AdmissionFormPage() {
                       )}
                     </div>
                     <div className="space-y-3">
-                      <div className="grid grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                           <label className="block text-fbs-green text-xs font-semibold uppercase tracking-widest mb-1.5">
                             Contact Type
@@ -1354,7 +1354,7 @@ export default function AdmissionFormPage() {
                           </p>
                         )}
                       </div>
-                      <div className="grid grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                           <label className="block text-fbs-green text-xs font-semibold uppercase tracking-widest mb-1.5">
                             Phone *

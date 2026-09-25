@@ -68,7 +68,7 @@ export default function AddStudentModal({ batches, onClose, onSuccess }) {
       <div className="bg-fbs-darker border border-fbs-border rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
 
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-fbs-border sticky top-0 bg-fbs-darker z-10">
+        <div className="flex items-center justify-between p-4 sm:p-6 border-b border-fbs-border sticky top-0 bg-fbs-darker z-10">
           <div>
             <h2 className="font-heading text-xl font-bold">Add Student</h2>
             <p className="text-gray-400 text-xs mt-0.5">Fill in student details</p>
@@ -78,7 +78,7 @@ export default function AddStudentModal({ batches, onClose, onSuccess }) {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-6">
           {error && (
             <div className="bg-red-900/30 border border-red-700 text-red-400 text-sm rounded-lg px-4 py-3">
               {error}
@@ -90,7 +90,7 @@ export default function AddStudentModal({ batches, onClose, onSuccess }) {
             <div className="text-xs font-semibold text-fbs-green uppercase tracking-widest mb-3">
               Student Identity
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="col-span-2">
                 <label className="text-xs text-gray-400 mb-1 block">FRN *</label>
                 <input
@@ -134,7 +134,7 @@ export default function AddStudentModal({ batches, onClose, onSuccess }) {
             <div className="text-xs font-semibold text-fbs-green uppercase tracking-widest mb-3">
               Profile Details
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
                 { field: 'collegeName', label: 'College Name', placeholder: 'MIT College' },
                 { field: 'collegeLocation', label: 'College Location', placeholder: 'Pune' },
@@ -162,7 +162,7 @@ export default function AddStudentModal({ batches, onClose, onSuccess }) {
               Parent / Guardian Contact *
             </div>
             <div className="bg-fbs-dark border border-fbs-border rounded-xl p-4">
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="col-span-2">
                   <label className="text-xs text-gray-400 mb-1 block">Contact Type</label>
                   <select

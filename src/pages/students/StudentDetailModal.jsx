@@ -222,7 +222,7 @@ export default function StudentDetailModal({
       <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
         <div className="bg-fbs-darker border border-fbs-border rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-fbs-border sticky top-0 bg-fbs-darker z-10">
+          <div className="flex items-center justify-between p-4 sm:p-6 border-b border-fbs-border sticky top-0 bg-fbs-darker z-10">
             <div className="flex items-center gap-4">
               {/* Avatar / Photo */}
               <div className="relative group flex-shrink-0">
@@ -311,7 +311,7 @@ export default function StudentDetailModal({
             </div>
           </div>
 
-          <div className="p-6">
+          <div className="p-4 sm:p-6">
             {error && (
               <div className="bg-red-900/30 border border-red-700 text-red-400 text-sm rounded-lg px-4 py-3 mb-4">
                 {error}
@@ -499,7 +499,7 @@ export default function StudentDetailModal({
                   <div className="text-xs font-semibold text-fbs-green uppercase tracking-widest mb-3">
                     Basic Info
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {[
                       { field: "fullName", label: "Full Name" },
                       { field: "email", label: "Email", type: "email" },
@@ -591,7 +591,7 @@ export default function StudentDetailModal({
                   <div className="text-xs font-semibold text-fbs-green uppercase tracking-widest mb-3">
                     Education
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {[
                       { field: "collegeName", label: "College Name" },
                       { field: "collegeLocation", label: "College Location" },
@@ -657,7 +657,7 @@ export default function StudentDetailModal({
                     {(form.contacts || []).map((contact, i) => (
                       <div
                         key={i}
-                        className="border border-fbs-border rounded-lg p-3 grid grid-cols-2 gap-3 relative">
+                        className="border border-fbs-border rounded-lg p-3 grid grid-cols-1 sm:grid-cols-2 gap-3 relative">
                         <button
                           type="button"
                           onClick={() =>

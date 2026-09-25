@@ -5,6 +5,7 @@ import { useAuth } from "../../context/AuthContext";
 import AddStudentModal from "./AddStudentModal";
 import BulkUploadModal from "./BulkUploadModal";
 import StudentDetailModal from "./StudentDetailModal";
+import ResponsiveTable from "../../components/ResponsiveTable";
 import { formatDate } from "../../utils/dateUtils";
 import {
   Search,
@@ -302,7 +303,7 @@ export default function StudentsPage() {
     <DashboardLayout>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6">
           <div>
             <h1 className="font-heading text-2xl font-bold text-white">
               Students
@@ -311,7 +312,7 @@ export default function StudentsPage() {
               {totalElements} active students
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setShowExport(true)}
               disabled={students.length === 0}
@@ -351,7 +352,7 @@ export default function StudentsPage() {
             </div>
 
             {searchType !== "batch" && (
-              <div className="relative flex-1 min-w-48">
+              <div className="relative flex-1 min-w-0 w-full sm:min-w-48">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
                 <input
                   type="text"
@@ -373,7 +374,7 @@ export default function StudentsPage() {
                   <select
                     value={selectedBatch}
                     onChange={(e) => handleBatchChange(e.target.value)}
-                    className="appearance-none bg-fbs-dark border border-fbs-border rounded-lg pl-3 pr-8 py-2 text-sm text-white focus:outline-none focus:border-fbs-green cursor-pointer min-w-48">
+                    className="appearance-none bg-fbs-dark border border-fbs-border rounded-lg pl-3 pr-8 py-2 text-sm text-white focus:outline-none focus:border-fbs-green cursor-pointer w-full sm:min-w-48 max-w-full">
                     <option value="">Select batch...</option>
                     {batches.map((b) => (
                       <option key={b.id} value={b.batchCode}>
@@ -427,6 +428,7 @@ export default function StudentsPage() {
             </div>
           ) : (
             <>
+              <ResponsiveTable>
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-fbs-border">
@@ -506,10 +508,11 @@ export default function StudentsPage() {
                   ))}
                 </tbody>
               </table>
+              </ResponsiveTable>
 
               {/* Pagination */}
               {totalPages > 1 && (
-                <div className="flex items-center justify-between px-5 py-4 border-t border-fbs-border">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between px-4 sm:px-5 py-4 border-t border-fbs-border">
                   <p className="text-xs text-gray-500">
                     Showing {currentPage * PAGE_SIZE + 1}–
                     {Math.min((currentPage + 1) * PAGE_SIZE, totalElements)} of{" "}
@@ -572,7 +575,7 @@ export default function StudentsPage() {
       {showExport && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
           <div className="bg-fbs-darker border border-fbs-border rounded-2xl w-full max-w-md">
-            <div className="flex items-center justify-between p-6 border-b border-fbs-border">
+            <div className="flex items-center justify-between p-4 sm:p-6 border-b border-fbs-border">
               <div>
                 <h2 className="font-heading text-xl font-bold">
                   Export Students
@@ -587,7 +590,7 @@ export default function StudentsPage() {
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="p-6 space-y-3">
+            <div className="p-4 sm:p-6 space-y-3">
               {[
                 {
                   value: "current",
@@ -684,7 +687,7 @@ export default function StudentsPage() {
                     Export students added within a date range
                   </p>
                   {exportFilter === "daterange" && (
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       <div>
                         <label className="text-xs text-gray-400 mb-1 block">
                           From

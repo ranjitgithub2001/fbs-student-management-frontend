@@ -6,6 +6,7 @@ import {
   ClipboardList, Check, X, Loader2,
   User, Mail, Briefcase, BadgeCheck, Clock, XCircle, Shield
 } from 'lucide-react';
+import ResponsiveTable from '../components/ResponsiveTable';
 
 const STATUS_TABS = ['ALL', 'PENDING', 'APPROVED', 'REJECTED'];
 
@@ -112,7 +113,7 @@ export default function AccessRequestsPage() {
         </div>
 
         {/* Stat cards */}
-        <div className="grid grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6">
           {[
             { label: 'Total', count: counts.ALL, color: 'text-white', border: 'border-fbs-border' },
             { label: 'Pending', count: counts.PENDING, color: 'text-yellow-400', border: 'border-yellow-700/30' },
@@ -127,7 +128,7 @@ export default function AccessRequestsPage() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-1 bg-fbs-darker border border-fbs-border rounded-xl p-1 mb-4 w-fit">
+        <div className="flex flex-wrap gap-1 bg-fbs-darker border border-fbs-border rounded-xl p-1 mb-4 w-full sm:w-fit max-w-full">
           {STATUS_TABS.map(tab => (
             <button key={tab} onClick={() => setActiveTab(tab)}
               className={`px-4 py-1.5 rounded-lg text-xs font-semibold transition-all ${
@@ -160,6 +161,7 @@ export default function AccessRequestsPage() {
               <p className="text-gray-400">No {activeTab.toLowerCase()} requests</p>
             </div>
           ) : (
+            <ResponsiveTable>
             <table className="w-full">
               <thead>
                 <tr className="border-b border-fbs-border">
@@ -218,6 +220,7 @@ export default function AccessRequestsPage() {
                 ))}
               </tbody>
             </table>
+            </ResponsiveTable>
           )}
         </div>
       </div>
@@ -226,7 +229,7 @@ export default function AccessRequestsPage() {
       {showModal && selectedRequest && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
           <div className="bg-fbs-darker border border-fbs-border rounded-2xl w-full max-w-md">
-            <div className="flex items-center justify-between p-6 border-b border-fbs-border">
+            <div className="flex items-center justify-between p-4 sm:p-6 border-b border-fbs-border">
               <div>
                 <h2 className="font-heading text-xl font-bold">
                   {actionType === 'approve' ? '✅ Approve Request' : '❌ Reject Request'}
@@ -242,7 +245,7 @@ export default function AccessRequestsPage() {
               </button>
             </div>
 
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               {/* Request summary */}
               <div className="bg-fbs-dark border border-fbs-border rounded-xl p-4 mb-4 space-y-2">
                 <div className="flex items-center gap-2">

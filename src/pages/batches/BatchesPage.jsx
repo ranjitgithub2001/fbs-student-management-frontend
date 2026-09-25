@@ -3,6 +3,7 @@ import DashboardLayout from "../../components/DashboardLayout";
 import axiosInstance from "../../api/axiosInstance";
 import { useAuth } from "../../context/AuthContext";
 import { formatDate } from "../../utils/dateUtils";
+import ResponsiveTable from "../../components/ResponsiveTable";
 import {
   Plus,
   Pencil,
@@ -337,7 +338,7 @@ export default function BatchesPage() {
   return (
     <DashboardLayout>
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6">
           <div>
             <h1 className="font-heading text-2xl font-bold text-white">
               Batches
@@ -357,7 +358,7 @@ export default function BatchesPage() {
 
         <div className="bg-fbs-darker border border-fbs-border rounded-2xl p-4 mb-4">
           <div className="flex gap-3 flex-wrap items-center">
-            <div className="relative flex-1 min-w-48">
+            <div className="relative flex-1 min-w-0 w-full sm:min-w-48">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
               <input
                 type="text"
@@ -371,7 +372,7 @@ export default function BatchesPage() {
               <select
                 value={filterCourse}
                 onChange={(e) => setFilterCourse(e.target.value)}
-                className="appearance-none bg-fbs-dark border border-fbs-border rounded-lg pl-3 pr-8 py-2 text-sm text-white focus:outline-none focus:border-fbs-green cursor-pointer min-w-40">
+                className="appearance-none bg-fbs-dark border border-fbs-border rounded-lg pl-3 pr-8 py-2 text-sm text-white focus:outline-none focus:border-fbs-green cursor-pointer w-full sm:min-w-40 max-w-full">
                 <option value="">All Courses</option>
                 {courses.map((c) => (
                   <option key={c} value={c}>
@@ -385,7 +386,7 @@ export default function BatchesPage() {
               <select
                 value={filterYear}
                 onChange={(e) => setFilterYear(e.target.value)}
-                className="appearance-none bg-fbs-dark border border-fbs-border rounded-lg pl-3 pr-8 py-2 text-sm text-white focus:outline-none focus:border-fbs-green cursor-pointer min-w-32">
+                className="appearance-none bg-fbs-dark border border-fbs-border rounded-lg pl-3 pr-8 py-2 text-sm text-white focus:outline-none focus:border-fbs-green cursor-pointer w-full sm:min-w-32 max-w-full">
                 <option value="">All Years</option>
                 {years.map((y) => (
                   <option key={y} value={y}>
@@ -439,6 +440,7 @@ export default function BatchesPage() {
           ) : (
             <>
 
+            <ResponsiveTable>
             <table className="w-full">
               <thead>
                 <tr className="border-b border-fbs-border">
@@ -521,8 +523,9 @@ export default function BatchesPage() {
                 ))}
               </tbody>
             </table>
+            </ResponsiveTable>
             {totalPages > 1 && (
-  <div className="flex items-center justify-between px-5 py-4 border-t border-fbs-border">
+  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between px-4 sm:px-5 py-4 border-t border-fbs-border">
     <p className="text-xs text-gray-500">
       Showing {currentPage * PAGE_SIZE + 1}–{Math.min((currentPage + 1) * PAGE_SIZE, totalElements)} of {totalElements} batches
     </p>
@@ -557,7 +560,7 @@ export default function BatchesPage() {
       {showModal && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
           <div className="bg-fbs-darker border border-fbs-border rounded-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between p-6 border-b border-fbs-border sticky top-0 bg-fbs-darker">
+            <div className="flex items-center justify-between p-4 sm:p-6 border-b border-fbs-border sticky top-0 bg-fbs-darker">
               <div>
                 <h2 className="font-heading text-xl font-bold">
                   {editBatch ? "Edit Batch" : "New Batch"}
@@ -575,7 +578,7 @@ export default function BatchesPage() {
               </button>
             </div>
 
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               {formError && (
                 <div className="bg-red-900/30 border border-red-700 text-red-400 text-sm rounded-lg px-4 py-3 mb-4">
                   {formError}
@@ -595,7 +598,7 @@ export default function BatchesPage() {
                     <label className="block text-fbs-green text-xs font-semibold uppercase tracking-widest mb-2">
                       Course *
                     </label>
-                    <div className="grid grid-cols-3 gap-2 mb-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-2">
                       {COURSES.map((c) => (
                         <button
                           key={c.code}
@@ -618,7 +621,7 @@ export default function BatchesPage() {
                       ))}
                     </div>
                     {selectedCourseIsOther && (
-                      <div className="grid grid-cols-2 gap-2 mt-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
                         <input
                           value={createForm.course}
                           onChange={(e) =>
@@ -648,7 +651,7 @@ export default function BatchesPage() {
                   </div>
 
                   {/* Month + Year */}
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-fbs-green text-xs font-semibold uppercase tracking-widest mb-2">
                         Start Month *
@@ -778,7 +781,7 @@ export default function BatchesPage() {
                   </div>
 
                   {/* Start / End dates */}
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-fbs-green text-xs font-semibold uppercase tracking-widest mb-2">
                         Start Date
@@ -895,7 +898,7 @@ export default function BatchesPage() {
                       className="w-full bg-fbs-dark border border-fbs-border rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-600 outline-none focus:border-fbs-green"
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-fbs-green text-xs font-semibold uppercase tracking-widest mb-2">
                         Start Date

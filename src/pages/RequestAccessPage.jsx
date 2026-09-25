@@ -64,7 +64,7 @@ export default function RequestAccessPage() {
   }
 
   return (
-    <div className="min-h-screen bg-fbs-dark flex">
+    <div className="min-h-screen bg-fbs-dark flex overflow-x-hidden">
 
       {/* ── Left Panel ── */}
       <div className="hidden md:flex w-2/5 bg-fbs-darker flex-col items-center justify-center px-8 relative overflow-hidden flex-shrink-0">
@@ -93,7 +93,7 @@ export default function RequestAccessPage() {
       </div>
 
       {/* ── Right Panel ── */}
-      <div className="flex-1 flex items-center justify-center px-6 py-10 min-h-screen">
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 py-8 sm:py-10 min-h-screen min-w-0">
         <div className="w-full max-w-sm">
 
           {/* Mobile logo */}
@@ -101,7 +101,7 @@ export default function RequestAccessPage() {
             <img src={fbsLogo} alt="FBS Logo" className="w-16 h-16 object-contain" />
           </div>
 
-          <div className="bg-fbs-card border border-fbs-border rounded-2xl px-8 py-9">
+          <div className="bg-fbs-card border border-fbs-border rounded-2xl px-4 py-7 sm:px-8 sm:py-9">
 
             {/* ── Success state ── */}
             {submitted ? (

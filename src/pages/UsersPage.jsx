@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import DashboardLayout from "../components/DashboardLayout";
 import axiosInstance from '../api/axiosInstance';
 import { Users, Shield, Eye, Loader2, X, Search, ToggleLeft, ToggleRight } from 'lucide-react';
+import ResponsiveTable from '../components/ResponsiveTable';
 
 export default function UsersPage() {
   const [users, setUsers] = useState([]);
@@ -76,7 +77,7 @@ export default function UsersPage() {
         </div>
 
         {/* Stat cards */}
-        <div className="grid grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6">
           {[
             { label: 'Total Users', value: counts.total, color: 'text-white' },
             { label: 'Admins', value: counts.admin, color: 'text-purple-400' },
@@ -94,7 +95,7 @@ export default function UsersPage() {
         <div className="bg-fbs-darker border border-fbs-border rounded-2xl p-4 mb-4">
           <div className="flex gap-3 flex-wrap items-center">
             {/* Search */}
-            <div className="relative flex-1 min-w-48">
+            <div className="relative flex-1 min-w-0 w-full sm:min-w-48">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
               <input type="text" value={search}
                 onChange={e => setSearch(e.target.value)}
@@ -104,7 +105,7 @@ export default function UsersPage() {
             </div>
 
             {/* Role filter */}
-            <div className="flex gap-1 bg-fbs-dark border border-fbs-border rounded-lg p-1">
+            <div className="flex flex-wrap gap-1 bg-fbs-dark border border-fbs-border rounded-lg p-1">
               {['ALL', 'ADMIN', 'VIEWER'].map(r => (
                 <button key={r} onClick={() => setFilterRole(r)}
                   className={`px-3 py-1 rounded-md text-xs font-semibold transition ${
@@ -116,7 +117,7 @@ export default function UsersPage() {
             </div>
 
             {/* Status filter */}
-            <div className="flex gap-1 bg-fbs-dark border border-fbs-border rounded-lg p-1">
+            <div className="flex flex-wrap gap-1 bg-fbs-dark border border-fbs-border rounded-lg p-1">
               {['ALL', 'ACTIVE', 'INACTIVE'].map(s => (
                 <button key={s} onClick={() => setFilterStatus(s)}
                   className={`px-3 py-1 rounded-md text-xs font-semibold transition ${
@@ -155,6 +156,7 @@ export default function UsersPage() {
               <p className="text-gray-400">No users found</p>
             </div>
           ) : (
+            <ResponsiveTable>
             <table className="w-full">
               <thead>
                 <tr className="border-b border-fbs-border">
@@ -217,6 +219,7 @@ export default function UsersPage() {
                 ))}
               </tbody>
             </table>
+            </ResponsiveTable>
           )}
         </div>
       </div>

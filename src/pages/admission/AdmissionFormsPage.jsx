@@ -16,6 +16,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import ResponsiveTable from "../../components/ResponsiveTable";
 
 const PAGE_SIZE = 8;
 
@@ -190,7 +191,7 @@ export default function AdmissionFormsPage() {
         </div>
 
         {/* ── Top row: FRN Generator + Generate Link side by side ── */}
-        <div className="grid grid-cols-2 gap-4 mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           {/* FRN Generator */}
           <div className="bg-fbs-darker border border-fbs-border rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-3">
@@ -336,7 +337,7 @@ export default function AdmissionFormsPage() {
 
         {/* ── All Links Table ── */}
         <div className="bg-fbs-darker border border-fbs-border rounded-2xl overflow-hidden">
-          <div className="px-5 py-3 border-b border-fbs-border flex items-center justify-between">
+          <div className="px-4 sm:px-5 py-3 border-b border-fbs-border flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="text-sm font-semibold text-white">All Form Links</h2>
             <span className="text-xs text-gray-500">{links.length} total</span>
           </div>
@@ -374,6 +375,7 @@ export default function AdmissionFormsPage() {
                   Inactive ({links.filter((l) => !l.active).length})
                 </button>
               </div>
+              <ResponsiveTable>
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-fbs-border">
@@ -480,6 +482,7 @@ export default function AdmissionFormsPage() {
                   ))}
                 </tbody>
               </table>
+              </ResponsiveTable>
 
               {/* Pagination */}
               {totalPages > 1 && (

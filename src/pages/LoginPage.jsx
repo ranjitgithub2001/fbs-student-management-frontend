@@ -116,7 +116,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-fbs-dark flex">
+    <div className="min-h-screen bg-fbs-dark flex overflow-x-hidden">
       {/* ── Left Panel (unchanged) ── */}
       <div className="hidden md:flex w-2/5 bg-fbs-darker flex-col items-center justify-center px-8 relative overflow-hidden flex-shrink-0">
         <div className="absolute top-0 left-0 w-2 h-full bg-fbs-yellow" />
@@ -157,9 +157,9 @@ export default function LoginPage() {
       </div>
 
       {/* ── Right Panel ── */}
-      <div className="flex-1 flex items-center justify-center px-6 py-10 min-h-screen">
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 py-8 sm:py-10 min-h-screen min-w-0">
         <div className="w-full max-w-sm">
-          <div className="bg-fbs-card border border-fbs-border rounded-2xl px-8 py-9">
+          <div className="bg-fbs-card border border-fbs-border rounded-2xl px-4 py-7 sm:px-8 sm:py-9">
             <h2 className="text-white text-xl font-semibold mb-1">
               {mode === "login" ? "Welcome back" : "Reset your password"}
             </h2>

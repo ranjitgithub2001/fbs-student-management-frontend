@@ -18,6 +18,7 @@ import {
   BadgeCheck,
   XCircle,
 } from "lucide-react";
+import ResponsiveTable from "../../components/ResponsiveTable";
 
 const STATUS_TABS = ["ALL", "PENDING", "APPROVED", "REJECTED"];
 
@@ -141,7 +142,7 @@ export default function AdmissionRequestsPage() {
         </div>
 
         {/* Stat cards */}
-        <div className="grid grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6">
           {[
             { label: "Total", count: counts.ALL, color: "text-white" },
             {
@@ -170,7 +171,7 @@ export default function AdmissionRequestsPage() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-1 bg-fbs-darker border border-fbs-border rounded-xl p-1 mb-4 w-fit">
+        <div className="flex flex-wrap gap-1 bg-fbs-darker border border-fbs-border rounded-xl p-1 mb-4 w-full sm:w-fit max-w-full">
           {STATUS_TABS.map((tab) => (
             <button
               key={tab}
@@ -205,6 +206,7 @@ export default function AdmissionRequestsPage() {
               </p>
             </div>
           ) : (
+            <ResponsiveTable>
             <table className="w-full">
               <thead>
                 <tr className="border-b border-fbs-border">
@@ -308,6 +310,7 @@ export default function AdmissionRequestsPage() {
                 ))}
               </tbody>
             </table>
+            </ResponsiveTable>
           )}
         </div>
       </div>
@@ -316,7 +319,7 @@ export default function AdmissionRequestsPage() {
       {showDetail && selected && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
           <div className="bg-fbs-darker border border-fbs-border rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between p-6 border-b border-fbs-border sticky top-0 bg-fbs-darker z-10">
+            <div className="flex items-center justify-between p-4 sm:p-6 border-b border-fbs-border sticky top-0 bg-fbs-darker z-10">
               <div className="flex items-center gap-4">
                 {/* Avatar with zoom */}
                 <div className="relative group flex-shrink-0">
@@ -381,7 +384,7 @@ export default function AdmissionRequestsPage() {
               </div>
             </div>
 
-            <div className="p-6 space-y-6">
+            <div className="p-4 sm:p-6 space-y-6">
               <div>
                 <p className="text-xs font-semibold text-fbs-green uppercase tracking-widest mb-2">
                   Personal Info
@@ -556,7 +559,7 @@ export default function AdmissionRequestsPage() {
       {showAction && selected && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[60] p-4">
           <div className="bg-fbs-darker border border-fbs-border rounded-2xl w-full max-w-md">
-            <div className="flex items-center justify-between p-6 border-b border-fbs-border">
+            <div className="flex items-center justify-between p-4 sm:p-6 border-b border-fbs-border">
               <div>
                 <h2 className="font-heading text-xl font-bold">
                   {actionType === "approve"
@@ -576,7 +579,7 @@ export default function AdmissionRequestsPage() {
               </button>
             </div>
 
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               <div className="bg-fbs-dark border border-fbs-border rounded-xl p-4 mb-4">
                 <p className="text-sm font-medium text-white">
                   {selected.fullName}
@@ -614,7 +617,7 @@ export default function AdmissionRequestsPage() {
                 />
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex flex-col-reverse sm:flex-row gap-3">
                 <button
                   onClick={() => setShowAction(false)}
                   className="flex-1 py-2.5 border border-fbs-border rounded-lg text-sm text-gray-400 hover:bg-fbs-card transition">

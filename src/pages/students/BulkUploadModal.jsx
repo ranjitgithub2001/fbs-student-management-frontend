@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import axiosInstance from '../../api/axiosInstance';
 import { X, Upload, FileText, Loader2, CheckCircle, AlertCircle, SkipForward } from 'lucide-react';
+import ResponsiveTable from '../../components/ResponsiveTable';
 
 const STEPS = ['upload', 'preview', 'result'];
 
@@ -61,7 +62,7 @@ export default function BulkUploadModal({ onClose, onSuccess }) {
       <div className="bg-fbs-darker border border-fbs-border rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
 
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-fbs-border sticky top-0 bg-fbs-darker z-10">
+        <div className="flex items-center justify-between p-4 sm:p-6 border-b border-fbs-border sticky top-0 bg-fbs-darker z-10">
           <div>
             <h2 className="font-heading text-xl font-bold">Bulk Upload Students</h2>
             <div className="flex gap-2 mt-1">
@@ -78,7 +79,7 @@ export default function BulkUploadModal({ onClose, onSuccess }) {
           </button>
         </div>
 
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           {error && (
             <div className="bg-red-900/30 border border-red-700 text-red-400 text-sm rounded-lg px-4 py-3 mb-4">
               {error}
@@ -132,7 +133,7 @@ export default function BulkUploadModal({ onClose, onSuccess }) {
           {step === 'preview' && preview && (
             <div>
               {/* Summary chips */}
-              <div className="grid grid-cols-5 gap-2 mb-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-4">
                 {[
                   { label: 'Total',      value: preview.total,   color: 'text-white' },
                   { label: 'Ready',      value: preview.rows?.filter(r => r.status === 'READY').length || 0,      color: 'text-fbs-green' },
@@ -157,6 +158,7 @@ export default function BulkUploadModal({ onClose, onSuccess }) {
 
               {/* Table */}
               <div className="border border-fbs-border rounded-xl overflow-hidden mb-4">
+                <ResponsiveTable>
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-fbs-border bg-fbs-dark">
@@ -181,6 +183,7 @@ export default function BulkUploadModal({ onClose, onSuccess }) {
                     ))}
                   </tbody>
                 </table>
+                </ResponsiveTable>
               </div>
 
               <div className="flex gap-3">
@@ -204,7 +207,7 @@ export default function BulkUploadModal({ onClose, onSuccess }) {
                 <h3 className="font-heading text-xl font-bold">Import Complete</h3>
               </div>
 
-              <div className="grid grid-cols-3 gap-3 mb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
                 {[
                   { label: 'Imported', value: result.inserted, icon: CheckCircle, color: 'text-fbs-green' },
                   { label: 'Skipped',  value: result.skipped,  icon: SkipForward,  color: 'text-yellow-400' },

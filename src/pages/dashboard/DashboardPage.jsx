@@ -188,8 +188,8 @@ export default function DashboardPage() {
             </div>
 
             {/* Charts */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              <div className="bg-fbs-darker border border-fbs-border rounded-2xl p-5">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 min-w-0">
+              <div className="bg-fbs-darker border border-fbs-border rounded-2xl p-4 sm:p-5 min-w-0 overflow-hidden">
                 <div className="mb-4">
                   <h2 className="text-sm font-semibold text-white">Students per Batch</h2>
                   <p className="text-xs text-gray-500 mt-0.5">Active students grouped by batch</p>
@@ -200,7 +200,7 @@ export default function DashboardPage() {
                   <ResponsiveContainer width="100%" height={220}>
                     <BarChart data={stats.studentsPerBatch} margin={{ top: 0, right: 10, left: -20, bottom: 0 }}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#565656" vertical={false} />
-                      <XAxis dataKey="batchName" tick={{ fill: '#9ca3af', fontSize: 11 }} axisLine={false} tickLine={false} />
+                      <XAxis dataKey="batchName" tick={{ fill: '#9ca3af', fontSize: 11 }} axisLine={false} tickLine={false} interval="preserveStartEnd" tickFormatter={(value) => (typeof value === "string" && value.length > 14 ? `${value.slice(0, 14)}…` : value)} />
                       <YAxis tick={{ fill: '#9ca3af', fontSize: 11 }} axisLine={false} tickLine={false} allowDecimals={false} />
                       <Tooltip content={<CustomTooltip />} cursor={{ fill: '#444444' }} />
                       <Bar dataKey="count" fill="#8DC63F" radius={[6, 6, 0, 0]} maxBarSize={50} />
@@ -209,7 +209,7 @@ export default function DashboardPage() {
                 )}
               </div>
 
-              <div className="bg-fbs-darker border border-fbs-border rounded-2xl p-5">
+              <div className="bg-fbs-darker border border-fbs-border rounded-2xl p-4 sm:p-5 min-w-0 overflow-hidden">
                 <div className="mb-4">
                   <h2 className="text-sm font-semibold text-white">Student Growth</h2>
                   <p className="text-xs text-gray-500 mt-0.5">New students added in last 6 months</p>
